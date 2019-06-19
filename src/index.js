@@ -8,6 +8,8 @@ import * as serviceWorker from './serviceWorker';
 window.netlifyIdentity.on('login', user => {
     // On masque la page statique
     document.getElementById('homepage').setAttribute('hidden', true)
+    // Close the modal
+    window.netlifyIdentity.close();
     // Et on affiche l'application React
     ReactDOM.render(<App user={user} />, document.getElementById('root')) 
 });
