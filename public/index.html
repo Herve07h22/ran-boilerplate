@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link href="styles.css" rel="stylesheet">
     <title>RAN Boilerplate</title>
 
     <!-- include the widget -->
@@ -13,8 +14,14 @@
   </head>
 
 <body>
-    <div class="container mx-auto px-4">
-      <div data-netlify-identity-button>Login with Netlify Identity</div>
-    </div>
+    <nav class="container mx-auto px-4">
+      <div data-netlify-identity-button> </div>
+    </nav>
+    <main class="container mx-auto px-4" id="homepage">
+      <h1>Titre du site statique</h1>
+      <p>Description du site</p>
+    </main>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
 </body>
 </html>

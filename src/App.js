@@ -1,24 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './styles.css';
+import axios from 'axios';
+import GridMember from './Components/GridMember'
 
-function App() {
+axios.interceptors.request.use(
+  (config) => {
+      let netlifyUserString = localStorage.getItem('gotrue.user');
+      
+      if (netlifyUserString) {
+          let netlifyUser = JSON.parse(netlifyUserString)
+          config.headers['Authorization'] = `Bearer ${ netlifyUser.token.access_token }`
+      }
+
+      return config;
+  }, 
+
+  (error) => {
+      return Promise.reject(error);
+  }
+)
+
+const App = ({user}) => {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Bienvenue {user ? user.user_metadata.full_name : "invité" } </h1>
+      <GridMember />
     </div>
   );
 }
