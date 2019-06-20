@@ -58,16 +58,6 @@ const headers = {
 
 exports.handler = (event, context, callback) => {
     
-    /*
-    query('contact@camilab.co', "Membres")
-        .then( records => callback(null, {
-            statusCode: 200,
-            body: JSON.stringify({ data: records })
-            })
-        )
-        .catch( error => callback(null, {  statusCode: 401, body: JSON.stringify({ error }) } ))
-    */
-
     // Pre-flight request
     if (event.httpMethod === 'OPTIONS') {
         return  callback(null, { statusCode: 204, headers, body:'' })
@@ -77,12 +67,12 @@ exports.handler = (event, context, callback) => {
     // Use the event data auth header to verify
     
     checkAuth(context).then((user) => {
-        console.log('user', user)
+        // console.log('user', user)
         query(user.email, "Membres")
         .then( records => callback(null, {
             statusCode: 200,
             headers,
-            body: JSON.stringify({ data: records })
+            body:  JSON.stringify(records && records.length ? {cards:records} : { error: "Désolé, votre fiche n'est pas encore validée." }) 
             })
         )
     })

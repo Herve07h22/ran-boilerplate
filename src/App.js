@@ -21,9 +21,10 @@ axios.interceptors.request.use(
 
 const App = ({user}) => {
   
+  if (user && document.getElementById('homepage')) document.getElementById('homepage').remove()
+
   return (
     <div>
-      <h1>Bienvenue {user ? user.user_metadata.full_name : "invité" } </h1>
       <GridMember />
     </div>
   );
