@@ -1,27 +1,14 @@
 import React from 'react';
-import axios from 'axios';
+
 import GridMember from './Components/GridMember'
+import { useNetlify } from './api/hooks'
 
-axios.interceptors.request.use(
-  (config) => {
-      let netlifyUserString = localStorage.getItem('gotrue.user');
-      
-      if (netlifyUserString) {
-          let netlifyUser = JSON.parse(netlifyUserString)
-          config.headers['Authorization'] = `Bearer ${ netlifyUser.token.access_token }`
-      }
 
-      return config;
-  }, 
+const App = () => {
+  const user = useNetlify()
 
-  (error) => {
-      return Promise.reject(error);
-  }
-)
-
-const App = ({user}) => {
-  
-  if (user && document.getElementById('homepage')) document.getElementById('homepage').remove()
+  if (user && document.getElementById('homepage')) document.getElementById('homepage').remove() 
+  else return <div />
 
   return (
     <div>

@@ -1,12 +1,12 @@
-import axios from 'axios';
+import axios from 'axios'
 
 axios.interceptors.request.use(
     (config) => {
-        let netlifyUserString = localStorage.getItem('gotrue.user');
+        let netlifyUserString = localStorage.getItem('gotrue.user')
 
         if (netlifyUserString) {
             let netlifyUser = JSON.parse(netlifyUserString)
-            config.headers['Authorization'] = `Bearer ${ netlifyUser.token.access_token }`;
+            config.headers['Authorization'] = `Bearer ${ netlifyUser.token.access_token }`
         }
 
         return config;
@@ -24,5 +24,6 @@ const url = endpoint => {
         return document.location.origin + '/.netlify/functions/' + endpoint
     }
 }
+
 
 export {url}
