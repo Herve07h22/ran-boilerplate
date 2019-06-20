@@ -4,7 +4,7 @@ import axios from 'axios';
 import Member from './Member'
 import {url} from '../api/api'
 
-const GridMember = () => {
+const GridMember = ( {user} ) => {
     // const [ filter, setFilter ] = useState('')
     const [ cards, setcards ]   = useState([])
     const [ error, setError ]   = useState('')
@@ -21,8 +21,13 @@ const GridMember = () => {
           }
         fetchData()
         },
-        []
+        // Reload if the user change
+        [user]
     )
+
+    console.log("cards :", cards)
+    console.log("error :", error)
+    console.log("loading :", loading)
     
     if (error) return ( <div><p> {error} </p></div>)
     

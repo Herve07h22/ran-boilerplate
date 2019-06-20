@@ -12,7 +12,7 @@ const App = () => {
 
   return (
     <div>
-      <GridMember />
+      <GridMember user={user} />
     </div>
   );
 }

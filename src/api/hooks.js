@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 
 
 function useNetlify() {
-    const [user, setUser] = useState(null);
+    const netlifyUserString = localStorage.getItem('gotrue.user')
+    const [user, setUser]   = useState(netlifyUserString ? JSON.parse(netlifyUserString) : null)
   
     useEffect(() => {
         const login = u => {
@@ -18,11 +19,9 @@ function useNetlify() {
         window.netlifyIdentity.on('login', login)
         window.netlifyIdentity.on('logout', logout)
 
-      
     })
     return user
   }
 
   export { useNetlify }
 
-  
