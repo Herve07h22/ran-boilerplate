@@ -14,3 +14,16 @@ ul {
 
 @tailwind utilities;
 
+.columns {
+	column-width: 350px;
+	}
+
+.column {
+  display: inline-block;
+  column-break-inside: avoid;
+  /* Pour Firefox : */
+  page-break-inside: avoid;
+  /* Pour WebKit : */
+  -webkit-column-break-inside: avoid;
+}
+

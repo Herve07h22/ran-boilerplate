@@ -5,7 +5,7 @@ import Tag from './Tag'
 const Member = ({member}) => {
     return (
         
-        <div className="block max-w-sm w-full lg:flex p-2">
+        <div className="column p-2">
   
             <div className="border-r border-b border-l border-gray-400  bg-white rounded shadow-md p-4 flex flex-col justify-between leading-normal">
                 <div className="mb-8">

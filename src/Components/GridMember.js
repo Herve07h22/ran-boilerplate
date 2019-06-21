@@ -32,7 +32,7 @@ const GridMember = ( {user} ) => {
     if (error) return ( <div><p> {error} </p></div>)
     
     return (
-        <div className="flex flex-wrap flex-col max-h-screen">
+        <div className="columns w-full">
             {loading ? <p className="ml-4 mt-4 text-gray-900 font-bold text-xl" >Chargement des fiches ....</p> : cards.map( card => <Member key={card['Email']} member={card} /> )}
         </div>
     )
