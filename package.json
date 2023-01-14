@@ -3,19 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "airtable": "^0.6.0",
-    "axios": "^0.19.0",
-    "netlify-lambda": "^1.4.13",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "airtable": "^0.11.6",
+    "axios": "^1.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1"
   },
   "scripts": {
-    "css": "npx tailwind build src/styles.css -o public/styles.css",
+    "css": "npx tailwind build -i ./src/styles.css -o public/styles.css",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "yarn css && react-scripts build && yarn build:lambda",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "dev": "netlify dev",
     "serve:lambda": "netlify-lambda serve src/backend",
     "build:lambda": "netlify-lambda build src/backend"
   },
@@ -35,6 +35,6 @@
     ]
   },
   "devDependencies": {
-    "tailwindcss": "^1.0.4"
+    "tailwindcss": "^3.2.4"
   }
 }

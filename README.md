@@ -1,68 +1,61 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Un site pour gérer un collectif de professionnels
 
-## Available Scripts
+Vous animez un réseau de professionnels dans votre région ?
 
-In the project directory, you can run:
+Cet outil open-source permet de construire un site Internet simple pour partager la liste des membres.
 
-### `npm start`
+Fonctionnalités :
+- formulaire d'inscription
+- validation des demandes d'inscription
+- accès avec authentification à la liste des membres validés
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+La base de données comportant la liste des membres est gérées par AirTable.
+C'est une sorte de Excel en ligne. L'outil est payant, mais dispose d'une version gratuite en générale sufficante pour un collectif de quelques dizaines de membres. 
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Le site Internet interroge AirTable via son API pour récupérer la liste à afficher.
+Mais l'accès est restreint : seul un membre validé peut accéder à la liste. 
 
-### `npm test`
+L'hébergement du site est assurée par Netlify. 
+C'est aussi un service en ligne dont la version gratuite est suffisante. 
+L'authentification par login/mot de passe est également gérée par Netlify.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Installation
 
-### `npm run build`
+## Etape 1 : AirTable
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Voici comment procéder :
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Créer un compte sur [AirTable](https://airtable.com/).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Copier ensuite la base de données qui servira à stocker la liste des membres, à partir de [cet exemple](https://airtable.com/shrpiZM7Oz16H5VQb). Ouvrir la base de données ainsi copiée, et observer la structure de l'url qui ressemble à `https://airtable.com/appxxxxxxxxxx/`.
+Cet identifiant `appxxxxxxxxxx` est l'id de la base de données.
 
-### `npm run eject`
+Aller ensuite dans [votre compte AirTable](https://airtable.com/account) pour générer une clé d'API. 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Enfin, ouvrir le formulaire d'inscription Airtable (il a été copié avec la base) et noter son URL (de la frome https://airtable.com/xxxxx)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Ces 3 informations sont à verser dans un fichier de configuration `.env` :
+- `AIRTABLE_KEY` : la clé d'API
+- `AIRTABLE_DATABASE` : l'id de la base
+- `REACT_APP_FORM_URL` : l'url du formulaire Airtable pour s'inscrire
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Le fichier `.env` devrait ressembler à ceci :
+```
+REACT_APP_FORM_URL=https://airtable.com/xxxxxx
+AIRTABLE_KEY=xxxxx
+AIRTABLE_DATABASE=xxxxx
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Etape 2 : Netlify
 
-## Learn More
+Créer un compte sur [Netlify](https://netlify.com)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Déployer le site en cliquant sur ce bouton :
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Herve07h22/ran-boilerplate)
 
-### Code Splitting
+L'authentification est gérée par Netlify.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+# Support
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[contact@camilab.co](https://camilab.co)
